@@ -1,6 +1,7 @@
 "use strict";
 
-var app= angular.module("TodoApp", ["ngRoute"]);
+var app= angular.module("TodoApp", ["ngRoute"])
+.constant('FirebaseUrl', "https://angular-todo-list-ac163.firebaseio.com");
 
 app.config(function($routeProvider){
    $routeProvider.
@@ -12,7 +13,7 @@ app.config(function($routeProvider){
     templateUrl: "partials/item-form.html",
     controller: "ItemNewCtrl"
    }).
-   when('/items/details', {
+   when('/items/:itemId', {
     templateUrl: "partials/item-details.html",
     controller: "ItemViewCtrl"
    }).

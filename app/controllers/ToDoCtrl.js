@@ -1,8 +1,23 @@
 "use strict";
 
-app.controller("ToDoCtrl", function($scope){
+app.controller("ToDoCtrl", function($scope, $location){
     $scope.welcome = "hello";
     $scope.showListView = true;
+
+    //////////////////////
+    //WORKS FILTER BUTTONS
+    //////////////////////
+    $scope.newItem = function(){
+        console.log("you clicked on New Item");
+        $scope.showListView = false;
+        $location.url("/items/new");
+    };
+
+    $scope.allItems = function(){
+        console.log("you clicked on Show All Items");
+        $scope.showListView = true;
+        $location.url("/items/list");
+    };
     // $scope.newTask = {};
     
     ///////////////////////////

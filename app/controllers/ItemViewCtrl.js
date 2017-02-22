@@ -1,15 +1,19 @@
 "use strict";
 
-app.controller("ItemViewCtrl", function($scope, $location){
-	$scope.newItem = function(){
-        console.log("you clicked on New Item");
-        // $scope.showListView = false;
-        $location.url("/items/new");
-    };
+app.controller("ItemViewCtrl", function($scope, $routeParams, ItemStorage, $location){
 
-    $scope.allItems = function(){
-        console.log("you clicked on Show All Items");
-        // $scope.showListView = true;
-        $location.url("/items/list");
-    };
+    $scope.items = [];
+    console.log($routeParams.itemId);
+
+    ItemStorage.getItemList()
+    .then(function(itemCollection){
+        $scope.items = itemCollection;
+
+        $scope.selectedItem = $scope.items.filter(function(item){
+            return item.id === $routeParams.itemId;
+        })[0];
+    });
+
+    
+
 });
